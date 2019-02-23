@@ -26,16 +26,16 @@ public class NotationTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-/*
+
 	@Test
 	public void testComplexConvertInfixToPostfix() {
 		try {
 			String postfixResult = Notation.convertInfixToPostfix(complexInfix);
 			assertEquals(complexPostfix, postfixResult);
-		}
+		}/*
 		catch (InvalidNotationFormatException e){
 			assertTrue("This should not have caused an InvalidNotationFormatException", false);
-		}
+		}*/
 		catch (Exception e){
 			assertTrue("This should not have caused an Exception", false);
 		}
@@ -54,21 +54,21 @@ public class NotationTest {
 			assertTrue("This should not have caused an Exception", false);
 		}
 	}
-*/	
+	
 	@Test
 	public void testEasyConvertInfixToPostfix() {
 		try {
 			String postfixResult = Notation.convertInfixToPostfix(easyInfix);
 			assertEquals(easyPostfix, postfixResult);
-		}
+		}/*
 		catch (InvalidNotationFormatException e){
 			assertTrue("This should not have caused an InvalidNotationFormatException", false);
-		}
+		}*/
 		catch (Exception e){
 			assertTrue("This should not have caused an Exception", false);
 		}
 	}
-/*	
+	
 	@Test
 	public void testInvalidInfixExpression() {
 		try{
@@ -108,21 +108,21 @@ public class NotationTest {
 			assertTrue("This should not have caused an Exception", false);
 		}
 	}
-*/	
+	
 	@Test
 	public void testEasyConvertPostfixToInfix() {
 		try {
 			String infixResult = Notation.convertPostfixToInfix(easyPostfix);
 			assertEquals(easyInfix, infixResult);
 		}
-		catch (InvalidNotationFormatException e){
-			assertTrue("This should not have caused an InvalidNotationFormatException", false);
-		}
+		//catch (InvalidNotationFormatException e){
+		//	assertTrue("This should not have caused an InvalidNotationFormatException", false);
+		//}
 		catch (Exception e){
 			assertTrue("This should not have caused an Exception", false);
 		}
 	}
-/*
+
 	@Test
 	public void testInvalidPostfixExpressionB() {
 		try{
@@ -162,7 +162,7 @@ public class NotationTest {
 			assertTrue("This should not have caused an Exception", false);
 		}
 	}
-*/	
+	
 	@Test
 	public void testEasyEvaluatePostfixExpression() {
 		try {
@@ -176,7 +176,7 @@ public class NotationTest {
 			assertTrue("This should not have caused an Exception", false);
 		}
 	}
-/*	
+	
 	@Test
 	public void testComplexEvaluateInfixExpression() {
 		try {
@@ -204,7 +204,7 @@ public class NotationTest {
 			assertTrue("This should not have caused an Exception", false);
 		}
 	}
-*/	
+	
 	@Test
 	public void testEasyEvaluateInfixExpression() {
 		try {
@@ -218,7 +218,7 @@ public class NotationTest {
 			assertTrue("This should not have caused an Exception", false);
 		}
 	}
-/*	
+	
 	@Test
 	public void testInvalidInfixExpressionB() {
 		try{
@@ -241,5 +241,5 @@ public class NotationTest {
 			assertTrue("This should have thrown an InvalidNotationFormatException",true);
 		}
 	}
-*/
+
 }

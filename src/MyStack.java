@@ -2,20 +2,51 @@ import java.util.ArrayList;
 
 public class MyStack<T> implements StackInterface<T>{
 	
+	private T[] genericStackArray; //Generic Array
+	private int sizeOfStack; //Size of Stack
+	private int numStackElements; //Number of elements on Stack
+	private int top;
+	private int bottom;
+	
+	
+
 	/**
 	 * Provide two constructors
 	 * 1. takes in an int as the size of the stack
 	 * 2. default constructor - uses default as the size of the stack
+	 * @return 
 	 */
+	
+	//1
+	@SuppressWarnings("unchecked")
+	public MyStack(int size) {
+		sizeOfStack = size;
+		top = -1;
+		genericStackArray = (T[]) new Object[sizeOfStack];
+		
+	}
+	
+	//2 - Default Constructor
+	public void myStack() {
+		sizeOfStack = 5;
+		top = -1;
+		genericStackArray = (T[]) new Object[sizeOfStack];
+
+	}
 	
 	/**
 	 * Determines if Stack is empty
 	 * @return true if Stack is empty, false if not
 	 */
 	public boolean isEmpty() {
-		
-		boolean dummy = true;
-		return dummy;
+		if(top == -1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		//boolean dummy = true;
+		//return dummy;
 	}
 
 	/**
@@ -23,9 +54,18 @@ public class MyStack<T> implements StackInterface<T>{
 	 * @return true if Stack is full, false if not
 	 */
 	public boolean isFull() {
+		System.out.println("The sizeOfStack = " + sizeOfStack);
+		System.out.println("The numStackElements = " + numStackElements);
+
+		if(sizeOfStack == numStackElements) {
+			return true;
+		}
+		else {
+			return false;
+		}
 		
-		boolean dummy = true;
-		return dummy;
+		//boolean dummy = true;
+		//return dummy;
 	}
 	
 
@@ -34,14 +74,39 @@ public class MyStack<T> implements StackInterface<T>{
 	 * @return the element at the top of the Stack
 	 */
 	public T pop() throws StackUnderflowException{
+		System.out.println("The top = " + top);
+		int topIndex; //Top is the end of the array list
 		
+		if(top == -1) {
+			System.out.println("The stack is empty there is nothing to POP! Throw StackUnderflowException");
+			throw new StackUnderflowException();
+		}
+		else {
+			topIndex = top;
+			top--; //Decrement the top of the stack
+			System.out.println("genericStackArray[" + topIndex + "] = " + genericStackArray[topIndex]);
+			numStackElements--; //Decrement the number of stack elements
+			return genericStackArray[topIndex];
+		}
 	}
 	
 	/**
 	 * Returns the element at the top of the Stack, does not pop it off the Stack
 	 * @return the element at the top of the Stack
 	 */
+	//When peeking, no need to decrement the number of stack elements like in pop() b/c we just want to see what the top is.
 	public T peek() throws StackUnderflowException{
+		System.out.println("Lets PEEK at the top of the stack which is: " + top);
+		
+		if(top == -1) {
+			throw new StackUnderflowException();
+		}
+		else {
+			System.out.println("Inside PEEK, genericStackArray[" + top + "] = " + genericStackArray[top]);
+			
+			return genericStackArray[top];
+		}
+
 		
 	}
 
@@ -50,9 +115,10 @@ public class MyStack<T> implements StackInterface<T>{
 	 * @return the number of elements in the Stack
 	 */
 	public int size() {
-		
-		int dummy = 0;
-		return dummy;
+		System.out.println("Inside size() - The numStackElements = " + numStackElements);
+		return numStackElements;
+		//int dummy = 0;
+		//return dummy;
 	}
 	
 	/**
@@ -62,8 +128,19 @@ public class MyStack<T> implements StackInterface<T>{
 	 */
 	public boolean push(T e) throws StackOverflowException{
 		
-		boolean dummy = true;
-		return dummy;
+		if( top == (sizeOfStack - 1) ) {
+			System.out.println("The top of the stack is MAXED");
+			throw new StackOverflowException();
+		}
+		else {
+			top++;
+			genericStackArray[top] = e;
+			numStackElements++; //Increment the number of stack elements
+			return true;
+		}
+		
+		//boolean dummy = true;
+		//return dummy;
 		
 	}
 	
@@ -74,8 +151,19 @@ public class MyStack<T> implements StackInterface<T>{
 	 * @return an string which represent the Objects in the Stack from bottom to top
 	 */
 	public String toString() {
-		String dummy = "";
-		return dummy;
+		System.out.println("The genericStackArray = " + genericStackArray);
+		String elementsInStack = "";
+		
+		for(T s : genericStackArray) {
+			if(s != null) {
+				elementsInStack = elementsInStack + s;
+				System.out.println("elementsInStack = " + elementsInStack);
+			}
+		}
+		return elementsInStack;
+		
+		//String dummy = "";
+		//return dummy;
 	}
 	
 	/**
@@ -86,8 +174,29 @@ public class MyStack<T> implements StackInterface<T>{
 	 * separated with the delimiter
 	 */
 	public String toString(String delimiter) {
-		String dummy = "";
-		return dummy;
+		String elementsDelimiterInStack = "";
+		
+		for(T s : genericStackArray) {
+			if(s != null ) {
+				if(elementsDelimiterInStack == "") {
+					System.out.println("s = " + s);
+					elementsDelimiterInStack = elementsDelimiterInStack + s;
+				}
+				else {
+					System.out.println("s = " + delimiter + s);
+					elementsDelimiterInStack = elementsDelimiterInStack + delimiter + s;
+
+				}
+			}
+			
+			
+		}
+		
+		System.out.println("elementsDelimiterInStack = " + elementsDelimiterInStack);
+
+		return elementsDelimiterInStack;
+		//String dummy = "";
+		//return dummy;
 	}
 	
 	 /**
@@ -99,7 +208,28 @@ public class MyStack<T> implements StackInterface<T>{
 	  * @param list elements to be added to the Stack from bottom to top
 	  */
 	public void fill(ArrayList<T> list) throws StackOverflowException{
+		System.out.println("The list = " + list + " and its size = " + list.size());
+		System.out.println("The numStackElements = " + numStackElements);
+		System.out.println("The sizeOfStack = " + sizeOfStack);
+
+		int tempTop = 0;
 		
+		if( list.size() > sizeOfStack) {
+			System.out.println("Entry list is greater than the size of the queue");
+			throw new StackOverflowException();
+		}
+		else {
+			for(T s : list) {
+				System.out.println("The tempTop = " + tempTop + " , s = " + s);
+				genericStackArray[tempTop] = s;
+				System.out.println("generticStackArray[" + tempTop + "] = " + genericStackArray[tempTop]);
+				top = tempTop;
+				tempTop++;
+				numStackElements++;
+			}
+			
+
+		}
 	}
 
 }
