@@ -46,10 +46,10 @@ public class NotationTest {
 		try {
 			String postfixResult = Notation.convertInfixToPostfix(intermediateInfix);
 			assertEquals(intermediatePostfix, postfixResult);
-		}
+		}/*
 		catch (InvalidNotationFormatException e){
 			assertTrue("This should not have caused an InvalidNotationFormatException", false);
-		}
+		}*/
 		catch (Exception e){
 			assertTrue("This should not have caused an Exception", false);
 		}

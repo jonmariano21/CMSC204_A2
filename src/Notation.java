@@ -2,7 +2,7 @@
 
 
 public class Notation {
-	private static char[] array;
+	//private static char[] array;
 	private static String inFix = "";
 	private static String postFix = "";
 	private double evalInfix = 0.00;
@@ -13,8 +13,13 @@ public class Notation {
 	public static String convertInfixToPostfix(String s) throws StackOverflowException, StackUnderflowException {
 		//easyPostfix = "54+"
 		//easyInfix = "(5+4)"
+		
+		//intermediateInfix = "((3*(5+4))+2)";
+		//intermediatePostfix = "354+*2+";
+		
 		System.out.println("Inside convertInfixToPostfix - The input Infix = " + s);
 	
+		char[] array;
 		char ch;
 		char nextCharacter;
 		char topOperator;
@@ -91,7 +96,8 @@ return postfix
 			nextCharString = "" + nextCharacter;
 			System.out.println("The nextCharString = " + nextCharString);
 				 
-			
+			//intermediateInfix = "((3*(5+4))+2)";
+			//intermediatePostfix = "354+*2+";
 			switch(nextCharacter) {
 				case '0':case '1':case '2':case '3':case '4':case '5':case '6':case '7':case '8':case '9':
 					postFix = postFix + nextCharString;
@@ -124,28 +130,26 @@ return postfix
 			         while (!topOperatorString.equals("(")){
 			        	System.out.println("In CASE ')' WHILE");
 			            postFix = postFix + topOperatorString;
-			            System.out.println("The postFix = " + postFix);
+			            System.out.println("The postFix in CASE ) = " + postFix);
 		        		topOperatorString = operatorStack.pop();
 				        System.out.println("The last topOperatorString = " + topOperatorString);
-				        
+				     } 
+			         if(operatorStack.isEmpty()) {
+			        	 return postFix;
+			         }
+				     System.out.println("CASE ) before break");
 
-
-			         } 
-			         return postFix;
-			         
-			         //break;
+			         break;
 			    default: 
 			         break; // Ignore unexpected characters
 			}
+		    System.out.println("before index++");
+
 			index++;
-			//nextCharacter = array[index];
-			//System.out.println("nextCharacter = " + nextCharacter);
-			//nextCharString = "" + nextCharacter;
-			//System.out.println("nextCharString = " + nextCharString);
-		
 		} 
 			
-			 
+	    System.out.println("before WHILE operatorStack is NOT empty");
+	 
 		while (!operatorStack.isEmpty()) {
 			System.out.println("Inside WHILE operatorStack is NOT empty");
 			topOperatorString = operatorStack.pop();
@@ -156,7 +160,7 @@ return postfix
 		} 
 			
 		//index++;
-			//return postFix;
+		//return postFix;
 
 					
 		
