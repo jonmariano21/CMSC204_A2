@@ -17,7 +17,10 @@ public class Notation {
 	
 		char ch;
 		char nextCharacter;
+		char topOperator;
+
 		String nextCharString = "";
+		String topOperatorString;
 		int index = 0;
 		inFix = s;
 		//array = (char[]) new Object[inFix.length()];
@@ -48,55 +51,126 @@ public class Notation {
 		         } 
 		        operatorStack.push(nextCharacter) 
 		        break
+		        case '( ' :
+         operatorStack.push(nextCharacter) 
+         break
+      case ')' : // Stack is not empty if infix expression is valid 
+         topOperator = operatorStack.pop() 
+         while (topOperator != '(')
+         {
+            Append topOperator to postfix
+            topOperator = operatorStack.pop()
+         } 
+         break
+      default: 
+         break // Ignore unexpected characters
+   } 
+} 
+while (!operatorStack.isEmpty()) 
+{
+   topOperator = operatorStack.pop()
+   Append topOperator to postfix 
+} 
+return postfix
+
 
 		*/
 		//Get the characters of the string & populate the array
 		System.out.println("The length of the infix = " + inFix.length());	
 		for(int i = 0; i < inFix.length(); i++) {
-			System.out.println("Char " + i + " is " + inFix.charAt(i));	
+			//System.out.println("Char " + i + " is " + inFix.charAt(i));	
 			ch = inFix.charAt(i);
 			array[i] = ch;
-			System.out.println("array[" + i + "] = " + array[i]);
+			//System.out.println("array[" + i + "] = " + array[i]);
 		}
 		
 		while(array[index] != ' ') {
 			System.out.println("Inside WHILE");
-			nextCharacter = array[index + 1];
-			System.out.println("nextCharacter = " + nextCharacter);
+			
+			nextCharacter = array[index];
 			nextCharString = "" + nextCharacter;
-			System.out.println("nextCharString = " + nextCharString);
-
+			System.out.println("The nextCharString = " + nextCharString);
+				 
 			
 			switch(nextCharacter) {
-				case '1':
+				case '0':case '1':case '2':case '3':case '4':case '5':case '6':case '7':case '8':case '9':
 					postFix = postFix + nextCharString;
+					System.out.println("Theres a number! - postFix = " + postFix);
 					break;
 				case '^':
 					operatorStack.push(nextCharString);
 					break;
 				case '+' : case '-' : case '*' : case '/' :
-					while (!operatorStack.isEmpty() ) {//&& charPrecedence(nextCharString) <=  operatorStack.peek() )
-						postFix = postFix + operatorStack.peek();
+					operatorStack.push(nextCharString);
+					while (!operatorStack.isEmpty() && (charPrecedence(nextCharString) <  charPrecedence(operatorStack.peek() ) ) ) {
+						//postFix = postFix + operatorStack.peek();
+						System.out.println("The +-*/ postFix = " + postFix + ", The operatorStack = " + operatorStack);
 						operatorStack.pop();
 					}
-				operatorStack.push(nextCharString);
-				break;
-					
-			}
-			
-			index++;
-		
-			System.out.println("postFix = " + postFix);
+					//operatorStack.push(nextCharString);
+					break;
+				case '(' :
+			         operatorStack.push(nextCharString); 
+			         break;
+			    case ')' : // Stack is not empty if infix expression is valid 
+			         System.out.println("The operatorStack = " + operatorStack);
 
-		}
-		//System.out.println("postFix = " + postFix);
-		return postFix;
+			         topOperatorString = operatorStack.pop(); 
+			         //topOperatorString = operatorStack.peek(); 
+
+			
+			         System.out.println("The topOperatorString = " + topOperatorString);
+			         //topOperator = topOperatorString.charAt(0);
+			         while (!topOperatorString.equals("(")){
+			        	System.out.println("In CASE ')' WHILE");
+			            postFix = postFix + topOperatorString;
+			            System.out.println("The postFix = " + postFix);
+		        		topOperatorString = operatorStack.pop();
+				        System.out.println("The last topOperatorString = " + topOperatorString);
+				        
+
+
+			         } 
+			         return postFix;
+			         
+			         //break;
+			    default: 
+			         break; // Ignore unexpected characters
+			}
+			index++;
+			//nextCharacter = array[index];
+			//System.out.println("nextCharacter = " + nextCharacter);
+			//nextCharString = "" + nextCharacter;
+			//System.out.println("nextCharString = " + nextCharString);
 		
-		//String dummy = "";
-		//return dummy;
+		} 
+			
+			 
+		while (!operatorStack.isEmpty()) {
+			System.out.println("Inside WHILE operatorStack is NOT empty");
+			topOperatorString = operatorStack.pop();
+			System.out.println("The topOperatorString = " + topOperatorString);
+			postFix = postFix + topOperatorString;
+			System.out.println("The postFix = " + postFix);
+
+		} 
+			
+		//index++;
+			//return postFix;
+
+					
 		
-	}
 	
+		System.out.println("FINAL postFix = " + postFix);
+		return postFix;	
+		//index++;
+		
+		//System.out.println("postFix = " + postFix);
+
+	}
+
+	
+
 	public static String convertPostfixToInfix(String s) {
 		//easyPostfix = "54+"
 		//easyInfix = "(5+4)"
@@ -133,6 +207,8 @@ public class Notation {
 	            i = 1;
 	        case "^":
 	            i = 2;
+	        default:
+	            i = -1;	
 	    }
 	    System.out.println("i = " + i);
 	    return i;
