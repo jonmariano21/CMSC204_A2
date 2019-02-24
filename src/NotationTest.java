@@ -154,10 +154,10 @@ public class NotationTest {
 		try {
 			double result = Notation.evaluatePostfixExpression(intermediatePostfix);
 			assertEquals(evalIntermediatePostfix, result, .001);
-		}
+		}/*
 		catch (InvalidNotationFormatException e){
 			assertTrue("This should not have caused an InvalidNotationFormatException", false);
-		}
+		}*/
 		catch (Exception e){
 			assertTrue("This should not have caused an Exception", false);
 		}
@@ -168,10 +168,10 @@ public class NotationTest {
 		try {
 			double result = Notation.evaluatePostfixExpression(easyPostfix);
 			assertEquals(evalEasyPostfix, result, .001);
-		}
+		}/*
 		catch (InvalidNotationFormatException e){
 			assertTrue("This should not have caused an InvalidNotationFormatException", false);
-		}
+		}*/
 		catch (Exception e){
 			assertTrue("This should not have caused an Exception", false);
 		}
