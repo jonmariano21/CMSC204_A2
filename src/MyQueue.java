@@ -1,3 +1,12 @@
+/*
+ * CMSC 204 Assignment 2
+ * Class: MyQueue
+ * 
+ * @author Jonathan Mariano
+ * 
+ * Description: MyQueue will implement the QueueInterface. 
+ */
+
 import java.util.ArrayList;
 
 public class MyQueue<T> implements QueueInterface<T>{
@@ -16,6 +25,10 @@ public class MyQueue<T> implements QueueInterface<T>{
 	 * 
 	 */
 	//1:
+	/*
+	 * MyQueue
+	 * @param Integer for the size of the Queue
+	 */
 	@SuppressWarnings("unchecked")
 	public MyQueue (int i){
 		sizeOfQueue = i;
@@ -36,6 +49,7 @@ public class MyQueue<T> implements QueueInterface<T>{
 	}
 
 	/**
+	 * isEmpty
 	 * Determines if Queue is empty
 	 * @return true if Queue is empty, false if not
 	 */
@@ -55,8 +69,9 @@ public class MyQueue<T> implements QueueInterface<T>{
 	}
 
 	/**
+	 * isFull
 	 * Determines if the Queue is empty
-	 * @return
+	 * @return true if Queue is the size of Queue, false if not
 	 */
 	public boolean isFull() {
 		
@@ -74,6 +89,7 @@ public class MyQueue<T> implements QueueInterface<T>{
 	}
 	
 	/**
+	 * dequeue
 	 * Deletes and returns the element at the front of the Queue
 	 * @return the element at the front of the Queue
 	 */
@@ -100,6 +116,7 @@ public class MyQueue<T> implements QueueInterface<T>{
 	}
 
 	/**
+	 * size
 	 * Number of elements in the Queue
 	 * @return the number of elements in the Queue
 	 */
@@ -114,6 +131,7 @@ public class MyQueue<T> implements QueueInterface<T>{
 	}
 	
 	/**
+	 * enqueue
 	 * Adds an element to the end of the Queue
 	 * @param e the element to add to the end of the Queue
 	 * @return true if the add was successful, false if not
@@ -139,6 +157,7 @@ public class MyQueue<T> implements QueueInterface<T>{
 	
 	
 	/**
+	 * toString
 	 * Returns the string representation of the elements in the Queue, 
 	 * the beginning of the string is the front of the queue
 	 * @return string representation of the Queue with elements
@@ -159,8 +178,11 @@ public class MyQueue<T> implements QueueInterface<T>{
 	}
 	
 	/**
+	 * toString - Delimiter
 	 * Returns the string representation of the elements in the Queue, the beginning of the string is the front of the queue
 	 * Place the delimiter between all elements of the Queue
+	 * 
+	 * @param String delimiter to be placed between each element of the Queue
 	 * @return string representation of the Queue with elements separated with the delimiter
 	 */
 	public String toString(String delimiter) {
@@ -196,6 +218,7 @@ public class MyQueue<T> implements QueueInterface<T>{
 	}
 	
 	 /**
+	  * fill
 	  * Fills the Queue with the elements of the ArrayList, First element in the ArrayList
 	  * is the first element in the Queue
 	  * YOU MUST MAKE A COPY OF LIST AND ADD THOSE ELEMENTS TO THE QUEUE, if you use the

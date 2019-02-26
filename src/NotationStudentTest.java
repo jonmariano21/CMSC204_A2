@@ -1,3 +1,12 @@
+/*
+ * CMSC 204 Assignment 2
+ * Class: NotationTest
+ * 
+ * @author Jonathan Mariano
+ * 
+ * Description: The Notation tests.
+ */
+
 import static org.junit.Assert.*;
 
 import org.junit.After;

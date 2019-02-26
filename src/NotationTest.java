@@ -1,3 +1,12 @@
+/*
+ * CMSC 204 Assignment 2
+ * Class: NotationTest
+ * 
+ * @author Jonathan Mariano
+ * 
+ * Description: The Notation tests.
+ */
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -140,10 +149,10 @@ public class NotationTest {
 		try {
 			double result = Notation.evaluatePostfixExpression(complexPostfix);
 			assertEquals(evalComplexPostfix, result, .001);
-		}
+		}/*
 		catch (InvalidNotationFormatException e){
 			assertTrue("This should not have caused an InvalidNotationFormatException", false);
-		}
+		}*/
 		catch (Exception e){
 			assertTrue("This should not have caused an Exception", false);
 		}
@@ -182,10 +191,10 @@ public class NotationTest {
 		try {
 			double result = Notation.evaluateInfixExpression(complexInfix);
 			assertEquals(evalComplexPostfix, result, .001);
-		}
+		}/*
 		catch (InvalidNotationFormatException e){
 			assertTrue("This should not have caused an InvalidNotationFormatException", false);
-		}
+		}*/
 		catch (Exception e){
 			assertTrue("This should not have caused an Exception", false);
 		}
@@ -196,10 +205,10 @@ public class NotationTest {
 		try {
 			double result = Notation.evaluateInfixExpression(intermediateInfix);
 			assertEquals(evalIntermediatePostfix, result, .001);
-		}
+		}/*
 		catch (InvalidNotationFormatException e){
 			assertTrue("This should not have caused an InvalidNotationFormatException", false);
-		}
+		}*/
 		catch (Exception e){
 			assertTrue("This should not have caused an Exception", false);
 		}
@@ -210,10 +219,10 @@ public class NotationTest {
 		try {
 			double result = Notation.evaluateInfixExpression(easyInfix);
 			assertEquals(evalEasyPostfix, result, .001);
-		}
+		}/*
 		catch (InvalidNotationFormatException e){
 			assertTrue("This should not have caused an InvalidNotationFormatException", false);
-		}
+		}*/
 		catch (Exception e){
 			assertTrue("This should not have caused an Exception", false);
 		}

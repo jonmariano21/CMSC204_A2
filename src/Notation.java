@@ -1,3 +1,15 @@
+/*
+ * CMSC 204 Assignment 2
+ * Class Notation
+ * 
+ * @author Jonathan Mariano
+ * 
+ * Description: The Notation class will have a method infixToPostfix to convert infix notation to postfix notation that will 
+ * take in a string and return a string, a method postfixToInfix to convert postfix notation to infix notation that will take 
+ * in a string and return a string, and a method to evaluatePostfix to evaluate the postfix expression. It will take in a string 
+ * and return a double. A method to evaluateInfix to evaluate the infix expression. It will take in a string and return a double. 
+ */
+
 //import java.util.ArrayList;
 
 
@@ -9,7 +21,14 @@ public class Notation {
 	private double evalPostfix = 0.00;
 	
 	public static MyStack<String> operatorStack; //= new MyStack<String>(100);
+	public static MyStack<String> valueStack;
 	
+	/*
+	 * convertInfixToPostfix
+	 * @param Take in String of InFix to convert to PostFix
+	 * 
+	 * @return String PostFix
+	 */
 	public static String convertInfixToPostfix(String s) throws StackOverflowException, StackUnderflowException {
 		//easyPostfix = "54+"
 		//easyInfix = "(5+4)"
@@ -176,7 +195,12 @@ return postfix
 	}
 
 	
-
+	/*
+	 * convertPostfixToInfix
+	 * @param Take in String as PostFix to convert to InFix
+	 * 
+	 * @return String of PostFix converted to InFix
+	 */
 	public static String convertPostfixToInfix(String s) {
 		//easyPostfix = "54+"
 		//easyInfix = "(5+4)"
@@ -187,6 +211,11 @@ return postfix
 		
 	}
 	
+	/*
+	 * evaluatePostfixExpression
+	 * @param Take in String as PostFix to be evaluated
+	 * @return double result
+	 */
 	public static double evaluatePostfixExpression(String s) throws StackOverflowException, StackUnderflowException {
 		/*
 		 * // Evaluates a postfix expression.
@@ -310,33 +339,257 @@ return valueStack.peek()
 		return result;
 		
 	}
-	
-	public static double evaluateInfixExpression(String s) {
+	/*
+	 * evaluateInfixExpression
+	 * @param Take in String as InFix
+	 * @return double result
+	 */
+	public static double evaluateInfixExpression(String s) throws StackOverflowException, StackUnderflowException {
+		/*
+		 * // Evaluates an infix expression.
+operatorStack = a new empty stack 
+valueStack = a new empty stack
+while (infix has characters left to process) 
+{ 
+   nextCharacter = next nonblank character of infix
+   switch (nextCharacter) 
+   {
+      case variable:
+         valueStack.push(value of the variable nextCharacter)
+         break 
+      case '^' :
+         operatorStack.push(nextCharacter) 
+         break
+      case '+' : case '-' : case '*' : case '/' :
+         while (!operatorStack.isEmpty() and 
+		precedence of nextCharacter <= precedence of operatorStack.peek()) 
+         {
+            // Execute operator at top of operatorStack
+            topOperator = operatorStack.pop() 
+            operandTwo = valueStack.pop() 
+            operandOne = valueStack.pop() 
+            result = the result of the operation in 
+			topOperator and its operands operandOne and operandTwo 
+            valueStack.push(result)
+         } 
+         operatorStack.push(nextCharacter) 
+         break
+         case '(' :
+         operatorStack.push(nextCharacter) 
+         break
+      case ')' : // Stack is not empty if infix expression is valid 
+         topOperator = operatorStack.pop() 
+         while (topOperator != ‘(')
+         {
+            operandTwo = valueStack.pop() 
+            operandOne = valueStack.pop() 
+            result = the result of the operation in 
+ 			topOperator and its operands operandOne and operandTwo 
+            valueStack.push(result) 
+            topOperator = operatorStack.pop()
+         } 
+         break
+      default: break // Ignore unexpected characters
+   }
+} 
+while (!operatorStack.isEmpty()) 
+{
+   topOperator = operatorStack.pop()
+   operandTwo = valueStack.pop()
+   operandOne = valueStack.pop()
+   result = the result of the operation in 
+		topOperator and its operands operandOne and operandTwo
+   valueStack.push(result) 
+} 
+return valueStack.peek()
+*/
+		System.out.println("Inside evaluateInfixExpression(String s) - The input InFix = " + s);
 		
-		double dummy = 0.00;
-		return dummy;
+		operatorStack = new MyStack<String>(100);
+		valueStack = new MyStack<String>(100);
+		
+		double result = 0.00;
+		double operandOneDouble = 0.00;
+		double operandTwoDouble = 0.00;
+		String resultString = "";
+		
+		char[] array;
+		char ch;
+		char nextCharacter;
+		
+		String topOperatorString;
+		String operandOne;
+		String operandTwo;
+		String nextCharString = "";
+		int index = 0;
+		inFix = s;
+		//array = (char[]) new Object[inFix.length()];
+		array = new char[inFix.length()];
+		
+		//Get the characters of the string & populate the array
+		System.out.println("The length of the inFix = " + inFix.length());	
+		for(int i = 0; i < inFix.length(); i++) {
+			//System.out.println("Char " + i + " is " + postFix.charAt(i));	
+			ch = inFix.charAt(i);
+			array[i] = ch;
+			//System.out.println("array[" + i + "] = " + array[i]);
+		}
+		
+		while(array[index] != ' ') {
+			nextCharacter = array[index];
+			nextCharString = "" + nextCharacter;
+			System.out.println("The nextCharString = " + nextCharString);
+			
+			switch (nextCharacter){
+				case '0':case '1':case '2':case '3':case '4':case '5':case '6':case '7':case '8':case '9':					
+					//operatorStack.push(nextCharString);
+					valueStack.push(nextCharString);
+					System.out.println("The top of valueStack = " + valueStack.peek());
+					break; 
+				case '^' :
+					operatorStack.push(nextCharString); 
+					break;
+				case '+' : case '-' : case '*' : case '/' :
+					while (!operatorStack.isEmpty() && (charPrecedence(nextCharString) <= charPrecedence(operatorStack.peek() ) ) ){
+						// Execute operator at top of operatorStack
+						System.out.println("IM IN CASE + * - / WHILE");
+						topOperatorString = operatorStack.pop(); 
+						System.out.println("******The topOperatorString = " + topOperatorString);
+						
+						//operandTwo = operatorStack.pop(); 
+						operandTwo = valueStack.pop();
+						operandTwoDouble = Double.valueOf(operandTwo);
+				        System.out.println("operandTwoDouble = " + operandTwoDouble);
+
+				        System.out.println("Is the valueStack empty?? " + valueStack.isEmpty());
+				        if(valueStack.isEmpty()) {
+				        	break;
+				        }
+				        
+						//operandOne = operatorStack.pop();
+				        operandOne = valueStack.pop();
+				        operandOneDouble = Double.valueOf(operandOne);
+				        System.out.println("operandOneDouble = " + operandOneDouble);
+
+		            
+						//result = the result of the operation in topOperator and its operands operandOne and operandTwo
+				        //NEED to add topOperatorString to RESULT!!
+						result = resultHelper(operandOneDouble, topOperatorString, operandTwoDouble);
+						System.out.println("Double result = " + result);
+
+						resultString = "" + result;
+						System.out.println("string result = " + resultString);
+
+						//operatorStack.push(resultString);
+						valueStack.push(resultString);
+					} 
+					operatorStack.push(nextCharString); 
+					break;
+				case '(' :
+					operatorStack.push(nextCharString); 
+					System.out.println("CASE ( - The top of the operatorStack is " + operatorStack.peek());
+					break;
+				case ')' : // Stack is not empty if infix expression is valid 
+					topOperatorString = operatorStack.pop(); 
+					System.out.println("CASE ) - topOperatorString = " + topOperatorString);
+
+					while (!topOperatorString.equals("(") ){
+						//operandTwo = operatorStack.pop(); 
+						//operandOne = operatorStack.pop(); 
+						operandTwo = valueStack.pop(); 
+						operandTwoDouble = Double.valueOf(operandTwo);
+						System.out.println("CASE ) - operandTwoDouble = " + operandTwoDouble);
+						
+						System.out.println("In CASE ) - WHILE - Is the valueStack empty?? " + valueStack.isEmpty());
+				        if(valueStack.isEmpty()) {
+				        	break;
+				        }
+				        
+						operandOne = valueStack.pop();
+						operandOneDouble = Double.valueOf(operandOne);
+						System.out.println("CASE ) - operandOneDouble = " + operandOneDouble);
+
+						
+						result = resultHelper(operandOneDouble, topOperatorString, operandTwoDouble);
+						resultString = "" + result;
+						System.out.println("The resultString = " + resultString);
+						//NEED to add topOperatorString to RESULT!!
+						//operatorStack.push(resultString); 
+						valueStack.push(resultString);
+						topOperatorString = operatorStack.pop();
+					} 
+					break;
+				default: break; // Ignore unexpected characters
+			}
+			
+			index++;
+			
+			if(index == inFix.length()) {
+				System.out.println("In the IF");
+				//resultString = operatorStack.pop();
+				//result = Double.valueOf(resultString);
+				//System.out.println("The result = " + result);
+				return result;
+			}
+			System.out.println("The index++ = " + index);
+		}
+		System.out.println("Out of WHILE \n");
+		while(!operatorStack.isEmpty()) {
+			topOperatorString = operatorStack.pop();
+			operandTwo = valueStack.pop(); 
+			operandOne = valueStack.pop();
+			
+			//NEED to add topOperatorString to RESULT
+			result = resultHelper(operandOneDouble, topOperatorString, operandTwoDouble);
+			
+			valueStack.push(resultString);
+
+		}
+		
+		result = Double.valueOf(valueStack.peek());
+		
+		return result;
+		
+		
+		
 		
 	}
 	
-	
+	/*
+	 * Helper method to get character precedence
+	 * @param Take in String and determine its precedence
+	 * 
+	 * @return Integer of character precedence
+	 */
 	public static int charPrecedence(String c) {
 	    int i = -1;
 	    switch (c) {
 	        case "+":
 	        case "-":
 	            i = 0;
+	            break;
 	        case "*":
 	        case "/":
 	            i = 1;
+	            break;
 	        case "^":
 	            i = 2;
+	            break;
 	        default:
-	            i = -1;	
+	            i = -1;
+	            break;
 	    }
-	    System.out.println("i = " + i);
+	    System.out.println("The charPrecedence input of " + c + " , returns the int of " + i);
 	    return i;
 	}
-	
+	/*
+	 * Helper method to get the result 
+	 * @param Take in a double of 1st operand
+	 * @param Take in a String as the operation: + - / *
+	 * @param Take in a double of 2nd operand
+	 * 
+	 * @return double result
+	 */
 	public static double resultHelper(double operandOne, String nextCharString, double operandTwo) {
 		double o1 = operandOne;
 		String op = nextCharString;

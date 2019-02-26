@@ -1,3 +1,12 @@
+/*
+ * CMSC 204 Assignment 2
+ * Class: MyQueueTest
+ * 
+ * @author Jonathan Mariano
+ * 
+ * Description: MyQueue tests. 
+ */
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;

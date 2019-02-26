@@ -1,3 +1,12 @@
+/*
+ * CMSC 204 Assignment 2
+ * Class: MyStackTest
+ * 
+ * @author Jonathan Mariano
+ * 
+ * Description: MyStack tests. 
+ */
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;

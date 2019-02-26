@@ -1,3 +1,12 @@
+/*
+ * CMSC 204 Assignment 2
+ * Class: MyStack
+ * 
+ * @author Jonathan Mariano
+ * 
+ * Description: MyStack will implement the StackInterface. 
+ */
+
 import java.util.ArrayList;
 
 public class MyStack<T> implements StackInterface<T>{
@@ -18,6 +27,10 @@ public class MyStack<T> implements StackInterface<T>{
 	 */
 	
 	//1
+	/*
+	 * MyStack
+	 * @param Integer that is the size of the Stack
+	 */
 	@SuppressWarnings("unchecked")
 	public MyStack(int size) {
 		sizeOfStack = size;
@@ -35,6 +48,7 @@ public class MyStack<T> implements StackInterface<T>{
 	}
 	
 	/**
+	 * isEmpty
 	 * Determines if Stack is empty
 	 * @return true if Stack is empty, false if not
 	 */
@@ -50,6 +64,7 @@ public class MyStack<T> implements StackInterface<T>{
 	}
 
 	/**
+	 * isFull
 	 * Determines if Stack is full
 	 * @return true if Stack is full, false if not
 	 */
@@ -70,15 +85,16 @@ public class MyStack<T> implements StackInterface<T>{
 	
 
 	/**
+	 * pop
 	 * Deletes and returns the element at the top of the Stack
 	 * @return the element at the top of the Stack
 	 */
 	public T pop() throws StackUnderflowException{
-		System.out.println("The top = " + top);
+		//System.out.println("The top = " + top);
 		int topIndex; //Top is the end of the array list
 		
 		if(top == -1) {
-			System.out.println("The stack is empty there is nothing to POP! Throw StackUnderflowException");
+			//System.out.println("The stack is empty there is nothing to POP! Throw StackUnderflowException");
 			throw new StackUnderflowException();
 		}
 		else {
@@ -91,12 +107,13 @@ public class MyStack<T> implements StackInterface<T>{
 	}
 	
 	/**
+	 * peek
 	 * Returns the element at the top of the Stack, does not pop it off the Stack
 	 * @return the element at the top of the Stack
 	 */
 	//When peeking, no need to decrement the number of stack elements like in pop() b/c we just want to see what the top is.
 	public T peek() throws StackUnderflowException{
-		System.out.println("Lets PEEK at the top of the stack which is: " + top);
+		//System.out.println("Lets PEEK at the top of the stack which is: " + top);
 		
 		if(top == -1) {
 			throw new StackUnderflowException();
@@ -111,6 +128,7 @@ public class MyStack<T> implements StackInterface<T>{
 	}
 
 	/**
+	 * size
 	 * Number of elements in the Stack
 	 * @return the number of elements in the Stack
 	 */
@@ -122,6 +140,7 @@ public class MyStack<T> implements StackInterface<T>{
 	}
 	
 	/**
+	 * push
 	 * Adds an element to the top of the Stack
 	 * @param e the element to add to the top of the Stack
 	 * @return true if the add was successful, false if not
@@ -146,6 +165,7 @@ public class MyStack<T> implements StackInterface<T>{
 	
 	
 	/**
+	 * toString
 	 * Returns the elements of the Stack in a string from bottom to top, the beginning 
 	 * of the String is the bottom of the stack
 	 * @return an string which represent the Objects in the Stack from bottom to top
@@ -167,9 +187,13 @@ public class MyStack<T> implements StackInterface<T>{
 	}
 	
 	/**
+	 * toString - Delimiter
 	 * Returns the string representation of the elements in the Stack, the beginning of the 
 	 * string is the bottom of the stack
 	 * Place the delimiter between all elements of the Stack
+	 * 
+	 * @param String to be placed in between elements of the Stack
+	 * 
 	 * @return string representation of the Stack from bottom to top with elements 
 	 * separated with the delimiter
 	 */
@@ -200,6 +224,7 @@ public class MyStack<T> implements StackInterface<T>{
 	}
 	
 	 /**
+	  * fill
 	  * Fills the Stack with the elements of the ArrayList, First element in the ArrayList
 	  * is the first bottom element of the Stack
 	  * YOU MUST MAKE A COPY OF LIST AND ADD THOSE ELEMENTS TO THE STACK, if you use the
